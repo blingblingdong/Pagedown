@@ -80,7 +80,6 @@ tr {
 }
 table {
   border-collapse: collapse;
-  width: 100%;
 }
 
 tr:nth-child(even){background-color: #f2f2f2}
@@ -119,6 +118,7 @@ blockquote:before {
 }
 blockquote p {
   display: inline;
+  color: black!important;
 }
 
 .material-icons {

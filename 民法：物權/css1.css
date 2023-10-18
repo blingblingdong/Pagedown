@@ -119,6 +119,7 @@ blockquote:before {
 }
 blockquote p {
   display: inline;
+  color: rgba(0, 0, 0, 0.8)!important;
 }
 
 .material-icons {
