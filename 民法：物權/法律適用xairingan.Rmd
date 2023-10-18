@@ -1,0 +1,61 @@
+---
+title: "權利客體―以「物」為中心"
+author: "董宸賓"
+date: "2023-10-15"
+subtitle: "程式設計概論作品展示"
+output:
+  xaringan::moon_reader:
+    self_contained: FALSE
+    lib_dir: libs
+    css: "css2.css"
+    nature:
+      highlightLines: true
+      countIncrementalSlides: false
+      seal: false
+knit: pagedown::chrome_print
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library('xaringan')
+library('reticulate')
+library("renderthis")
+xaringanExtra::use_panelset()
+remotes::install_github('rstudio/pagedown')
+```
+
+class:inverse2,center
+
+## 物權的基本原則：一物一權
+
+.text-alignl[
+
+- 一個物權支配一個特定的物
+
+  例：書包中的民法總則，刑法總則與小六法共有三個所有權
+
+- 物權抽象，物是具體的
+
+  不代表無體物不是物
+
+- 以法律行為使權力發生變動時，是物權改變
+
+  例：買一隻羊，不是羊此物發生改變，是的物權改變
+]
+
+---
+class: bkb,center
+## 物的判斷：
+
+--
+
+.panelset[
+.panel[.panel-name[我愛的人]
+### 林舒姸
+]
+.panel[.panel-name[這是我要對你說的話]
+生日快樂
+]
+]
+
