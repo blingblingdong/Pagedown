@@ -12,7 +12,6 @@ output:
       highlightLines: true
       countIncrementalSlides: false
       seal: false
-knit: pagedown::chrome_print
 ---
 
 
@@ -23,7 +22,9 @@ library('reticulate')
 library("renderthis")
 xaringanExtra::use_panelset()
 remotes::install_github('rstudio/pagedown')
+xaringanExtra::use_webcam()
 ```
+
 
 class:inverse2,center
 
@@ -45,17 +46,36 @@ class:inverse2,center
 ]
 
 ---
-class: bkb,center
+class: bkb
 ## 物的判斷：
 
 --
+.panelset.sideways[
+.panel[
+.panel-name[
+
+## AA
+
+]
+```{r panelset = TRUE, results = "hold"}
+# Set panelset = TRUE to create "Code" and "Output" tabs
+# Use results = "hold" when chunk contains multiple expressions
+print("Oak is strong and also gives shade.")
+print("The lake sparkled in the red hot sun.")
+```
+]
+.panel[.panel-name[panel2]
+內容2
+]
+]
+
+---
 
 .panelset[
-.panel[.panel-name[我愛的人]
-### 林舒姸
+.panel[.panel-name[panel1]
+內容1
 ]
-.panel[.panel-name[這是我要對你說的話]
-生日快樂
+.panel[.panel-name[panel2]
+內容2
 ]
 ]
-

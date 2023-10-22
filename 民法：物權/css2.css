@@ -101,3 +101,17 @@ tr:hover {background-color: #0F2E3D;}
 p {
   font-size: 25px;
 }
+
+
+
+
+a, a > code {
+  color: #0051BA;
+  text-decoration: none;
+  font-size: 25px;
+  font-weight:bold;
+}
+a:hover, a:hover > code {
+  color: #d22!important;
+  text-decoration: none;
+}
