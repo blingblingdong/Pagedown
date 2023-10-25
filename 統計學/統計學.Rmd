@@ -295,8 +295,8 @@ Develop a scatter diagram with the number of rooms on the horizontal axis and th
 ggplot(ex70,aes(x=Rooms,y=`Cost/Night`))+
   geom_point()+
   theme_classic()+
-  labs(title= "ex55:scatterplot")+
-  theme(text=element_text(family="黑體-繁 中黑", size=16))+
+  labs(title= "ex70 : scatterplot")+
+  theme(text=element_text(family="黑體-繁 中黑", size=14))+
   coord_cartesian(ylim = c(0, 800),xlim=c(0,800))
 ```
 

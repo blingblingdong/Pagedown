@@ -1,0 +1,164 @@
+---
+title: "Taiwain culture"
+author: "董宸賓"
+date: "2023-10-15"
+subtitle: "Your best way to keep hydrated - beverage"
+output:
+  xaringan::moon_reader:
+    self_contained: FALSE
+    lib_dir: libs
+    css: "css2.css"
+    nature:
+      highlightLines: true
+      countIncrementalSlides: false
+      seal: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library('xaringan')
+library('reticulate')
+library("renderthis")
+xaringanExtra::use_panelset()
+xaringanExtra::use_webcam()
+xaringanExtra::use_tile_view()
+xaringanExtra::use_broadcast()
+```
+
+
+
+class:inverse2,center
+
+## Taiwan is known for its hot and humid.
+
+## The go-to Solution to quench its thirst is
+
+--
+
+# Beverage!
+
+???
+
+_if not asked to lend money_.
+
+---
+
+class: bkb
+
+## Four main Type of beverage
+
+--
+.panelset.sideways[
+.panel[.panel-name[Aluminum Pouches]
+
+### # Portable 
+
+### # Affordable
+
+```{r, out.width = '70%',echo=FALSE}
+knitr::include_graphics("libs/鋁箔包.jpeg")
+```
+
+
+]
+.panel[.panel-name[Plastic Bottles]
+
+### # Convenient
+
+### # Sealing Capabilities
+
+```{r, out.width = '70%',echo=FALSE}
+knitr::include_graphics("libs/寶特瓶.jpeg")
+```
+
+
+
+
+]
+.panel[.panel-name[Traditional Beverages]
+
+### # Healthy
+
+### # Authentic
+
+```{r, out.width = '80%',echo=FALSE}
+knitr::include_graphics("libs/貓空茶.jpeg")
+```
+
+
+]
+.panel[.panel-name[Bubble Tea]
+
+### # Customization
+
+### # Variety of Flavors
+
+
+```{r, out.width = '90%',echo=FALSE}
+knitr::include_graphics("libs/bubbletea1.jpeg")
+```
+
+
+]
+]
+
+---
+
+## Not just a thirst quenchers
+
+## But a our social fabric
+
+## And our daily life
+
+--
+
+## HERE IS MY STORY...
+
+---
+
+layout: true
+class: center,inverse2
+
+## Drawbacks 
+
+---
+
+## environmental concerns
+
+### single-use beverage containers have a substantial impact on the environment!
+
+
+
+```{r, out.width = '60%',echo=FALSE}
+knitr::include_graphics("libs/垃圾海.jpeg")
+```
+
+
+---
+
+
+## health issues
+
+### sweetened drinks often contain high levels of sugar, which pose health risks!
+.pull-right2[
+.text-alignl[
+### 1.increased risks of obesity<br>2.diabetes<br>3.cardiovascular diseases
+
+
+]
+]
+---
+
+layout: false
+
+### Taiwan's beverage culture is a reflection of our vibrant society, where drinks go beyond mere refreshment. 
+
+--
+
+### As we address those challenges, we can fully indulge in this culture while simultaneously promoting both personal health and environmental well-being!
+
+--
+
+## I'm proud to be a part of this beverage culture!
+
