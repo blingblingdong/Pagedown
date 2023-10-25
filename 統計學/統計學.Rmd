@@ -1,0 +1,312 @@
+---
+title: "統計學"
+author: "董宸賓"
+date: "2023-10-15"
+description: |
+  
+output:
+  distill::distill_article: 
+   toc: False
+   theme: "css1.css"
+main-color: "#0F2E3D"
+---
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(DT)
+library(openxlsx)
+library(showtext)
+xaringanExtra::use_panelset()
+```
+
+```{r xaringanExtra-clipboard, echo=FALSE}
+xaringanExtra::use_clipboard()
+```
+
+## 觀念複習
+
+### Mean:
+
+$\mu = \text{平均值}$
+
+$\mu\text{ or }\bar{x} = \frac{1}{n}\sum_{i=1}^{n}x_i$
+
+### Weighted mean:
+
+$$\bar{x} = \frac{\sum_{i=1}^{n} w_i \cdot x_i}{\sum_{i=1}^{n} w_i}$$
+
+可以反映每個值的重要性
+
+其中的wi是權重
+
+### 幾何平均數
+
+$$\bar{x_g} = \sqrt[n]{x_1 \cdot x_2 \cdot \ldots \cdot x_n}$$
+
+他通常被拿來做成長率:
+
+$$R = 1+(\bar{x_g}-x_1)$$
+
+### pecentiles 百分位數
+
+先算出pth再分位數的位置
+
+$$L_{p} = \frac{p(n+1)}{100}$$
+
+再求百分位數的「值」
+
+$Q_1=25th百分位數$
+
+$Q_3=75th百分位數$
+
+Interquartile Range四分位距
+
+$\text{IQR} = Q_3 - Q_1$
+
+### variance 變異數
+
+$$母體變異數：\sigma^2 = \frac{1}{N}\sum_{i=1}^{N}(x_i - \mu)^2$$
+
+$$樣本變異數：s^2 = \frac{1}{n-1}\sum_{i=1}^{n}(x_i - \bar{x})^2$$
+
+改寫一下
+
+$\sum_{i=1}^{n}x_i^2=(n-1)s^2+n\bar{x}^2$
+
+$s^2 = \frac{1}{n-1}\sum_{i=1}^{n}(x_i - \bar{x})^2$
+
+### cofficient of variation 變異係數
+
+$$母體變異係數：\frac{\sigma(s)}{\mu(\bar{x})}$$
+
+$$樣本變異係數：\frac{s}{\bar{x}}$$
+
+### Z分數
+$$Z_i = \frac{x_i - \mu}{\sigma}$$
+
+某資料點($x_i$)與某中位數($\bar{x}$)相距幾個標準差
+
+```{Latex}
+$Z_i = \frac{x_i - \mu}{\sigma}$
+```
+
+### Chebyshev's Theorem 切比雪夫不等式：
+
+$$1-\frac{1}{z^2}(z>1)$$
+
+至少有$1-\frac{1}{z_i^2}$在$z_i$分數內
+
+### Eprical rule
+
+1.幾乎68%的data與中位數相差在1個標準差之內
+
+2.幾乎95%的data與中位數相差在2個標準差之內
+
+3.almost all的data與中位數相差在3個標準差之內
+
+## outlier 異常值
+
+$$Lower Limit = Q1 − 1.5(IQR) $$
+
+$$Upper Limit = Q3 + 1.5(IQR)$$
+## covariance 共變異程度
+
+$$母體共變異：\sigma_{xy} = \frac{1}{N}\sum_{i=1}^{N}(x_i - \mu_X)(y_i - \mu_Y)$$
+
+$$樣本共變異：s_{xy} =  \frac{1}{n-1}\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})$$
+
+
+## Correlation Coefficient 相關係數
+
+$$母體：p_{xy} = \frac{s_{xy}}{\sigma_X \sigma_Y}$$
+
+$$樣本：r_{xy} = \frac{\text{Cov}(X, Y)}{s_X s_Y}$$
+52：boxplot與綜合觀念
+
+題目：
+```{r}
+ex52<-read.xlsx("Ch3/CellService.xlsx")
+DT::datatable(
+  ex52
+)
+```
+
+```{r}
+summary(ex52$`T-Mobile`)
+```
+
+```{r}
+ex52_1<-
+  ex52%>%
+  select(`T-Mobile`,`AT&T`,Sprint,Verizon)
+ex52_2<-
+  ex52_1%>%
+  pivot_longer(c(`T-Mobile`,`AT&T`,Sprint,Verizon),names_to = "店名", values_to = "Rating")
+datatable(ex52_2)
+```
+```{r}
+ggplot(ex52_2,aes(x=店名,y=Rating))+
+  geom_boxplot()+
+  theme_classic()+
+  labs(title= "ex52:boxplot")+
+  theme(text=element_text(family="黑體-繁 中黑", size=16))
+
+```
+
+
+第55題：共變異與相關係數
+
+
+```{r}
+ex55<-
+  tibble(
+  x= c(4,6,11,3,16),
+  y= c(50,50,40,60,30)
+)
+
+ggplot(ex55,aes(x=x,y=y))+
+  geom_point()+
+  theme_classic()+
+  labs(title= "ex55:scatterplot")+
+  theme(text=element_text(family="黑體-繁 中黑", size=16))+
+  coord_cartesian(ylim = c(0, 70),xlim=c(0,20))
+
+
+```
+```{r}
+ex55_c<-
+  ex55%>%
+  mutate( x的離差 = x-mean(x), y的離差 = y-mean(y) , s = y的離差*x的離差)
+
+datatable(
+  ex55_c
+)
+
+
+```
+
+```{r}
+S_covariance<-sum(ex55_c$s)/(5-1)
+S_covariance
+```
+
+```{r}
+rxy <- S_covariance/(sd(ex55_c$x)*sd(ex55_c$y))
+rxy
+```
+
+
+
+## ex5
+
+Consider a sample with data values of 27, 25, 20, 15, 30, 34, 28, and 25. Compute the 20th, 25th, 65th, and 75th percentiles.
+
+1.recall
+
+Lp = p /100 (n+1)
+
+(p = 位置、n = 數字數)
+
+2.arrange the data
+
+15 20 25 25 27 28 30 34
+
+3.Compute
+
+20th = (20 /100)(8+1) = 9/5 = 1.8，<br>15+(20-15)\*0.8=19
+
+25th = (25/100)(8+1) = 2.25, <br> 20+(25-20)\*0.25=21.25
+
+65th = (65/100)(9) = 5.85, <br> 27+(28-27)\*0.85 = 27.85
+
+...
+
+## ex6
+
+Consider a sample with data values of 53, 55, 70, 58, 64, 57, 53, 69, 57, 68, and 53. Compute the mean, median, and mode.
+
+1.arrange
+
+53 53 53 55 57 57 58 64 68 69 70
+
+1.  mode = 53
+
+2.  mean = 657/11 = 59.72727
+
+3.  median = 57
+
+## ex10
+
+data = 42 66 67 71 78 62 61 76 71 67 61 64 61 54 83 63 68 69 81 53
+
+1.arrange
+
+n = 20
+
+```{r}
+y = c(42, 66 ,67 ,71 ,78 ,62 ,61 ,76 ,71 ,67 ,61 ,64 ,61 ,54  ,83 ,63 ,68 ,69 ,81 ,53)
+x <- y[order(y)]
+x
+```
+
+a.Compute the mean, median, and mode.
+
+```{r}
+summary(x)
+```
+
+b.Compute the first and third quartiles.
+
+c.Compute and interpret the 90th percentile.
+
+90th = 0.9*21 = 18.9* <br> 78 + 0.93 = 80.7
+
+## ex21
+
+### ex70
+
+Best Hotels. Travel + Leisure magazine provides an annual list of the 500 best hotels in the world. The magazine provides a rating for each hotel along with a brief description that includes the size of the hotel, amenities, and the cost per night for a double room. A sample of 12 of the top-rated hotels in the United States follows.
+
+```{r, echo=FALSE}
+ex70<-read.xlsx("Ch3/Travel.xlsx")
+DT::datatable(
+  ex70
+)
+```
+a:What is the mean number of rooms?
+
+```{r, echo=FALSE}
+mean(ex70$Rooms)
+```
+
+What is the mean cost per night for a double room?
+
+```{r, echo=FALSE}
+mean(ex70$`Cost/Night`)
+```
+
+Develop a scatter diagram with the number of rooms on the horizontal axis and the cost per night on the vertical axis. Does there appear to be a relationship between the number of rooms and the cost per night? Discuss.
+
+```{r, echo=FALSE}
+ggplot(ex70,aes(x=Rooms,y=`Cost/Night`))+
+  geom_point()+
+  theme_classic()+
+  labs(title= "ex55:scatterplot")+
+  theme(text=element_text(family="黑體-繁 中黑", size=16))+
+  coord_cartesian(ylim = c(0, 800),xlim=c(0,800))
+```
+
+it is difficult to see much of a relationship. When the number of rooms becomes larger, there is no indication that the cost per night increases. The cost per night may even decrease slightly.
+
+
+### ex73
+
+Money Market Funds Days to Maturity. The days to maturity for a sample of five money market funds are shown here. The dollar amounts invested in the funds are provided. Use the weighted mean to determine the mean number of days to maturity for dollars invested in these five money market funds.
+
+這題要做的是dollars invested，所以是以days to maturity為權重
+
+

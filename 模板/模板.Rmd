@@ -1,0 +1,19 @@
+---
+title: "民法-權力變動總論"
+author: "董宸賓"
+date: "2023-10-15"
+description: |
+  繼上次之文義與體系，本次著墨於歷史、目的性、限縮與擴張之解釋，並以探討刑201之肇事罪之沿革、法益、修法方向做為整合性之收尾。
+output:
+  distill::distill_article: 
+   toc: False
+   theme: "css1.css"
+main-color: "#0F2E3D"
+knit: pagedown::chrome_print
+---
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+## 本次架構
+
+![](aas4.png){width=80%}

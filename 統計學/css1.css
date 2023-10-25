@@ -73,22 +73,6 @@ d-appendix {
   color : white;
 }
 
-th {
-  text-align: center !important;
-  background-color: #0F2E3D;
-  color: white;
-}
-
-tr {
-  text-align: center !important;
-}
-table {
-  border-collapse: collapse;
-}
-
-tr:nth-child(even){background-color: #f2f2f2}
-
-tr:hover {background-color: #0F2E3D;}
 
 
 
